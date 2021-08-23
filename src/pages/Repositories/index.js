@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import * as Styled from './styled';
 
 export default function Repositories() {
     const [ repositories, setRepositories ] = useState([]);
     useEffect(() => {
         const repNames = JSON.parse(localStorage.getItem('repNames'));
         setRepositories(repNames);
-        localStorage.clear();
+        //localStorage.clear();
     }, []);  
      
     return(
-        <>
-            <h1>Repository List</h1>
-            <ul>
+        <Styled.Container>
+            <Styled.Title>Repository List</Styled.Title>
+            <Styled.List>
                 {
                     repositories.map(repository => {
                         return (
-                            <li>{repository}</li>
+                            <Styled.Item>{repository}</Styled.Item>
                         )
                         }
                     )
                 }
-            </ul>
-        </>
+            </Styled.List>
+            <Link to="/">{`< `}Back</Link>
+        </Styled.Container>
     );
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import * as Styled from './styled';
+import logo from '../../assets/git.png';
 
 export default function Home() {
     const [user, setUser] = useState('');
@@ -15,10 +17,13 @@ export default function Home() {
     }
 
     return(
-        <>
-            <h1>Git Repository Search</h1>
-            <input type="text" value={user} onChange={e => setUser(e.target.value)} />
-            <button onClick={handleSearch}>Search</button>
-        </>
+        <Styled.Container>
+            <img src={logo} alt="Git Logo" />
+            <Styled.Title>Git Repository Search</Styled.Title>
+            <div>
+                <Styled.Input type="text" value={user} onChange={e => setUser(e.target.value)} placeholder="Username" />
+                <Styled.Button onClick={handleSearch}>Search</Styled.Button>
+            </div>
+        </Styled.Container>
     );
 }
